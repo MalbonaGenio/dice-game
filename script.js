@@ -5,8 +5,8 @@ let player1Turn = true
 
 // DOM elements
 const messageDisplay = document.getElementById("message")
-const player1Score = document.getElementById("player1Scoreboard")
-const player2Score = document.getElementById("player2Scoreboard")
+const player1Scoreboard = document.getElementById("player1Scoreboard")
+const player2Scoreboard = document.getElementById("player2Scoreboard")
 const dice1 = document.getElementById("player1Dice")
 const dice2 = document.getElementById("player2Dice")
 const roll = document.getElementById("rollBtn")
@@ -18,9 +18,15 @@ const reset = document.getElementById("resetBtn")
      const diceRoll = Math.floor(Math.random() * 6) + 1
     //  As palyerTurn is already a binary value dont need to write player1Turn === true.
      if (player1Turn) {
-       console.log("Player 1 rolled: " + diceRoll)
+       dice1.innerText = diceRoll
+       dice1.classList.remove("active")
+       dice2.classList.add("active")
+       messageDisplay.innerText = ("Player 2 Turn")
      } else {
-       console.log("Player 2 rolled: " + diceRoll)
+       dice2.innerText = diceRoll
+       dice2.classList.remove("active")
+       dice1.classList.add("active")
+       messageDisplay.innerText = ("Player 1 Turn")
      }
     // instead of setting the value inside the if or else we can also flip the value to it's oposite as it is a binary value.
      player1Turn = !player1Turn
