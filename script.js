@@ -18,16 +18,29 @@ const reset = document.getElementById("resetBtn")
      const diceRoll = Math.floor(Math.random() * 6) + 1
     //  As palyerTurn is already a binary value dont need to write player1Turn === true.
      if (player1Turn) {
+       player1Score += diceRoll
+       player1Scoreboard.textContent = player1Score
        dice1.innerText = diceRoll
        dice1.classList.remove("active")
        dice2.classList.add("active")
        messageDisplay.innerText = ("Player 2 Turn")
      } else {
+       player2Score += diceRoll
+       player2Scoreboard.textContent = player2Score
        dice2.innerText = diceRoll
        dice2.classList.remove("active")
        dice1.classList.add("active")
        messageDisplay.innerText = ("Player 1 Turn")
      }
+
+     if (player1Score >= 20 || player2Score >= 20){
+        rollBtn.style.display = "none"
+        resetBtn.style.display = "inline-block"
+        if (player1Score >= 20){
+            message.textContent = "Player 1 Wins"
+        } else if (player2Score >= 20){
+            message.textContent = "Player 2 Wins"
+        }
     // instead of setting the value inside the if or else we can also flip the value to it's oposite as it is a binary value.
      player1Turn = !player1Turn
  })
